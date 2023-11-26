@@ -1,0 +1,69 @@
+https://imgbox.com/PIg8uwrh
+
+Infrastructure Design:
+
+Server 1 (8.8.8.8):
+
+A physical or virtual machine acting as the first server.
+Server 2 (8.8.8.9):
+
+Another physical or virtual machine acting as the second server.
+Server 3 (8.8.8.10):
+
+A third physical or virtual machine acting as the third server.
+Firewalls:
+
+Each server is equipped with a firewall.
+Firewalls are configured to allow only necessary incoming and outgoing traffic, enhancing security by controlling access.
+Web Server (Nginx):
+
+Nginx is used as the web server, installed on all three servers.
+Listens for incoming HTTP/HTTPS requests on ports 80 and 443.
+Handles static content delivery and forwards dynamic content requests to the application server.
+SSL Certificate:
+
+An SSL certificate is installed on the Nginx web server.
+Used to enable HTTPS, providing encryption for data in transit between clients and the web server.
+Application Server:
+
+Hosts the application code, installed on all three servers.
+Processes dynamic content requests forwarded by the web server.
+Database (MySQL):
+
+MySQL is used as the relational database management system (RDBMS).
+Configured as a Primary-Replica (Master-Slave) cluster for high availability and fault tolerance.
+Monitoring Clients (Sumo Logic):
+
+Each server is equipped with a monitoring client (Sumo Logic).
+Monitors system health, performance metrics, and logs, providing insights into the overall infrastructure.
+Explanation:
+
+Why Additional Servers:
+
+Adding multiple servers enhances fault tolerance, ensures high availability, and allows for better scalability.
+Firewalls:
+
+Firewalls control incoming and outgoing network traffic, acting as a barrier between the server and potential security threats. They are essential for securing the infrastructure.
+SSL Certificate (HTTPS):
+
+Serving traffic over HTTPS encrypts data in transit, providing a secure communication channel between clients and the web server. This is crucial for protecting sensitive information and ensuring user privacy.
+Monitoring:
+
+Monitoring is used to track the health and performance of servers, identify potential issues, and gather insights for optimizing the infrastructure.
+Monitoring Data Collection:
+
+Sumo Logic or other monitoring services collect data by aggregating logs, metrics, and other relevant information from the monitoring clients on each server. This data is then analyzed to generate actionable insights.
+Monitoring Web Server QPS:
+
+To monitor web server QPS (Queries Per Second), the monitoring tool can analyze server logs or use built-in metrics to track the number of incoming requests over time.
+Issues with this Infrastructure:
+
+Terminating SSL at the Load Balancer Level:
+
+Terminating SSL at the load balancer means that the traffic between the load balancer and the web servers is unencrypted. This can be an issue if the communication between the load balancer and the web servers is not secure.
+Single MySQL Server Accepting Writes:
+
+If only one MySQL server can accept writes (Primary node), it becomes a potential bottleneck, and there's a risk of data inconsistency during failover.
+Servers with Same Components:
+
+Having identical components on all servers might lead to a lack of diversity, making the entire infrastructure vulnerable to common points of failure. Diversifying components can enhance fault tolerance and security.

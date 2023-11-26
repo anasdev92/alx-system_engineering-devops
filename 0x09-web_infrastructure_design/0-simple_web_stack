@@ -1,1 +1,64 @@
-https://raw.githubusercontent.com/anasdev92/alx-system_engineering-devops/master/0x09-web_infrastructure_design/0-simple_web_stack.PNG
+https://imgbox.com/RIYItCxY
+
+Infrastructure Design:
+
+Server (8.8.8.8):
+
+A physical or virtual machine that hosts the entire web infrastructure.
+Responsible for processing user requests and managing the different components of the web application.
+Web Server (Nginx):
+
+Nginx is used as the web server.
+Listens for incoming HTTP requests on port 80.
+Handles static content delivery and forwards dynamic content requests to the application server.
+Application Server:
+
+Hosts the application code and processes dynamic content requests.
+In this case, let's say we are using Flask as the application framework (for simplicity).
+Application Files (Your Code Base):
+
+Contains the codebase for your web application.
+This could be written in a programming language such as Python, PHP, Ruby, etc., depending on your application framework.
+Database (MySQL):
+
+MySQL is used as the relational database management system (RDBMS).
+Stores and manages the data required by the web application.
+Domain Name (www.foobar.com):
+
+A human-readable address that users use to access the website.
+Configured with a www record that points to the server's IP address (8.8.8.8) through DNS.
+Explanation:
+
+What is a Server:
+
+A server is a computer or system that provides services or resources to other computers, known as clients, over a network.
+Role of the Domain Name:
+
+The domain name (www.foobar.com) is a human-readable label that maps to the IP address of the server. It provides a user-friendly way for clients to access the website.
+Type of DNS Record "www" is in www.foobar.com:
+
+The "www" is a subdomain, and it is usually a CNAME (Canonical Name) record in DNS, pointing to the main domain (foobar.com) or directly to the server's IP address.
+Role of the Web Server:
+
+The web server (Nginx) handles incoming HTTP requests, serves static content, and forwards dynamic content requests to the application server.
+Role of the Application Server:
+
+The application server hosts the application code and processes dynamic content requests, generating responses to be sent back to the web server.
+Role of the Database:
+
+The database (MySQL) stores and manages the data required by the web application, such as user information, content, etc.
+Server Communication with User's Computer:
+
+The server communicates with the user's computer through the HTTP protocol. The user's browser sends HTTP requests to the server, and the server responds with the requested web pages and data.
+Issues with this Infrastructure:
+
+Single Point of Failure (SPOF):
+
+The entire infrastructure relies on a single server (8.8.8.8). If this server fails, the entire website becomes inaccessible.
+Downtime During Maintenance:
+
+When maintenance is needed, such as deploying new code that requires restarting the web server, the website may experience downtime.
+Scalability Challenges:
+
+This infrastructure may struggle to handle increased traffic. If the number of incoming requests exceeds the server's capacity, the website's performance may degrade, leading to a poor user experience.
+To address these issues, a more robust solution would involve distributed systems, load balancing, and redundancy to ensure high availability and scalability.

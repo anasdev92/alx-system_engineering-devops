@@ -1,0 +1,63 @@
+https://imgbox.com/tZG9v50W
+
+Infrastructure Design:
+
+Server 1 (8.8.8.8):
+
+A physical or virtual machine acting as the first server.
+Server 2 (8.8.8.9):
+
+Another physical or virtual machine acting as the second server.
+Web Server (Nginx):
+
+Nginx is used as the web server, installed on both Server 1 and Server 2.
+Listens for incoming HTTP requests on port 80.
+Handles static content delivery and forwards dynamic content requests to the application server.
+Application Server:
+
+Hosts the application code and processes dynamic content requests.
+Installed on both Server 1 and Server 2.
+Load Balancer (HAproxy):
+
+HAproxy is used as the load balancer.
+Configured with a round-robin distribution algorithm to evenly distribute incoming requests between Server 1 and Server 2.
+Enables scalability and improves fault tolerance by distributing the load across multiple servers.
+Application Files (Your Code Base):
+
+Contains the codebase for your web application.
+Deployed on both Application Servers.
+Database (MySQL):
+
+MySQL is used as the relational database management system (RDBMS).
+Configured as a Primary-Replica (Master-Slave) cluster for high availability and fault tolerance.
+Explanation:
+
+Why Additional Servers:
+
+Adding multiple servers enhances fault tolerance, ensures high availability, and allows for better scalability.
+Load Balancer (HAproxy):
+
+A load balancer is introduced to evenly distribute incoming traffic between Server 1 and Server 2, preventing a single server from becoming a bottleneck.
+Distribution Algorithm (Round-Robin):
+
+Round-robin distributes requests in a rotating order, ensuring an equal share of the load for each server. This helps in load balancing and preventing one server from being overwhelmed.
+Active-Active vs. Active-Passive Setup:
+
+With a round-robin load balancer, it's an Active-Active setup where both Server 1 and Server 2 actively handle requests simultaneously.
+Primary-Replica (Master-Slave) Cluster:
+
+In the database cluster, one node (Primary) is responsible for read and write operations, while the other node (Replica) replicates data from the primary node for fault tolerance and read scalability.
+Difference Between Primary and Replica Nodes:
+
+The Primary node handles write operations and is the source of truth for the data. The Replica node(s) replicate data from the Primary and can be used for read operations, enhancing scalability and fault tolerance.
+Issues with this Infrastructure:
+
+Single Point of Failure (SPOF):
+
+Each server (Server 1 and Server 2) is a potential single point of failure. A failure in one server could impact the availability of the application.
+Security Issues (No Firewall, No HTTPS):
+
+The design lacks mention of a firewall for securing the servers. Additionally, there's no mention of implementing HTTPS for secure communication between clients and the web servers.
+No Monitoring:
+
+There's no mention of a monitoring system to track the health and performance of servers, load balancer, and the database. Monitoring is crucial for identifying issues and ensuring optimal performance.
